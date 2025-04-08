@@ -11,8 +11,12 @@ export const SupplierProvider = ({ children }) => {
   const [quill, setQuill] = useState(null); 
   const [darkMode, setDarkMode] = useState(false);
 
-  const socket = io(import.meta.env.VITE_APP_SOCKET_URL || '/');
+const socket = io(import.meta.env.VITE_APP_SOCKET_URL || '/', {
+  transports: ["websocket"],
+  withCredentials: true,
+});
 
+  
   const triggerUpdate = () => {
     setShouldUpdate(prev => !prev);
   };
